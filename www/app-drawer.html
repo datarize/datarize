@@ -1,0 +1,37 @@
+<template>
+  <style>
+     ::content>* {
+      color: red;
+    }
+    span{color: red;}
+  </style>
+  <span>I'm a shadow-element using Shadow DOM!</span>
+  <content></content>
+</template>
+
+<script>
+  let importDoc = document.currentScript.ownerDocument; // importee
+  customElements.define('app-drawer', class extends HTMLCanvasElement {
+    constructor() {
+      super(); 
+      const shadow = this.attachShadow({
+        mode: 'open'
+      });
+      
+      let template = importDoc.querySelector('template');
+
+      // import template into
+      let clone = document.importNode(template.content, true);
+
+      //var root = this.createShadowRoot();
+      shadow.appendChild(clone);
+    
+     /* shadowRoot.innerHTML =
+        `
+              <style>#tabs { ... }</style> <!-- styles are scoped to fancy-tabs! -->
+              <div id="tabs">...</div>
+              <div id="panels">...</div>
+            `;*/
+    }
+  });
+</script>

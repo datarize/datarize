@@ -4,6 +4,8 @@
   "description": "simple data analyzer",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node --use_strict index.js",
     "test": "echo \"Error: no test specified\""
   },
   "repository": {
